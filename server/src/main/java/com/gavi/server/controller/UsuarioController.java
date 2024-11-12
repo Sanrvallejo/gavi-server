@@ -32,12 +32,9 @@ public class UsuarioController {
         return ResponseEntity.ok(listaUsarios);
     }
 
-    @PostMapping("/usuario")
+    @PostMapping("/nuevo-usuario")
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
         Usuario nuevoUsuario = usuarioService.crearUsuario(usuario);
         return ResponseEntity.ok().body(nuevoUsuario);
     }
-
-
-
 }

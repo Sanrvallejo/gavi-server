@@ -20,8 +20,8 @@ public class Producto {
     @Column(nullable = false, unique = true)
     private String nombre;
 
-    private double precio;
-    private String cantidad;
+    private Double precio;
+    private Double cantidad;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")

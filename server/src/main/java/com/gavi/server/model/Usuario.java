@@ -3,6 +3,8 @@ package com.gavi.server.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name="usuarios")
@@ -14,11 +16,12 @@ public class Usuario {
     @Column(nullable = false, length = 50)
     private String nombre;
 
-    private String documento;
-
     @Column(nullable = false, unique = true)
     private String email;
 
     private String password;
+
+    @OneToMany(mappedBy = "propietario")
+    List<Producto> productos;
 
 }

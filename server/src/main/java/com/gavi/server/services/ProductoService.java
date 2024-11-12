@@ -35,7 +35,7 @@ public class ProductoService implements IProductoService{
     }
 
     @Override
-    public Producto crarProducto(Producto nuevoProducto) {
+    public Producto crearProducto(Producto nuevoProducto) {
         return productoRepository.save(nuevoProducto);
     }
 

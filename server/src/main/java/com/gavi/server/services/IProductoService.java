@@ -13,7 +13,7 @@ public interface IProductoService {
 
     Producto obtenerPorNombre(String nombre);
 
-    Producto crarProducto(Producto nuevoProducto);
+    Producto crearProducto(Producto nuevoProducto);
 
     void editarProducto(Long id, Producto productoEditado);
 

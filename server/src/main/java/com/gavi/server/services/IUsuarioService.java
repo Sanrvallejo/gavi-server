@@ -13,6 +13,8 @@ public interface IUsuarioService {
 
     List<Usuario> obtenerUsuarios();
 
+    Optional<Usuario> obtenerPorEmailAndPass(String email, String password);
+
     Usuario actualizarUsuario(Long id, Usuario usuario);
 
     void eliminarUsuario(Long id);

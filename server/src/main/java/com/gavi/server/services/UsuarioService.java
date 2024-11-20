@@ -25,6 +25,11 @@ public class UsuarioService implements  IUsuarioService{
     }
 
     @Override
+    public Optional<Usuario> obtenerPorEmailAndPass(String email, String password) {
+        return usuarioRepository.obtenerPorEmailAndPass(email, password);
+    }
+
+    @Override
     public List<Usuario> obtenerUsuarios() {
         return usuarioRepository.findAll();
     }

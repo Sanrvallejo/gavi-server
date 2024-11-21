@@ -26,12 +26,12 @@ public class ProductoService implements IProductoService{
 
     @Override
     public Producto obtenerPorCodigo(String codigo) {
-        return productoRepository.obtenerPorCodigo(codigo);
+        return productoRepository.findByCodigo(codigo);
     }
 
     @Override
     public Producto obtenerPorNombre(String nombre) {
-        return productoRepository.obtenerPorNombre(nombre);
+        return productoRepository.findByNombre(nombre);
     }
 
     @Override

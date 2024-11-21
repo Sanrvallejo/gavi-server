@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/productos")
+@RequestMapping("/api/gavi")
 public class ProductoController {
 
     @Autowired
     private IProductoService productoService;
 
-    @GetMapping("")
+    @GetMapping("/productos")
     public ResponseEntity<List<Producto>> obtenerProductos() {
         List<Producto> listaProductos = productoService.obtenerProductos();
 

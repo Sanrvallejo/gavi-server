@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/gavi/auth")
+@RequestMapping("/api/gavi")
 public class AuthController {
     @Autowired
     private IUsuarioService usuarioService;

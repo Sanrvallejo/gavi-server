@@ -20,6 +20,7 @@ public class Producto {
     @Column(nullable = false, unique = true)
     private String nombre;
 
+    private String categoria;
     private Double precio;
     private Double cantidad;
 

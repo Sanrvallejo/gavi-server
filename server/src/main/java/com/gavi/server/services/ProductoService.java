@@ -1,12 +1,15 @@
 package com.gavi.server.services;
 
 import com.gavi.server.model.Producto;
+import com.gavi.server.model.Usuario;
 import com.gavi.server.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductoService implements IProductoService{
@@ -20,8 +23,16 @@ public class ProductoService implements IProductoService{
     }
 
     @Override
-    public List<Producto> obtenerProductos() {
-        return productoRepository.findAll();
+    public List<Producto> obtenerProductos(Long idUsuario) {
+        List<Producto> productList = productoRepository.findAll();
+
+        if (idUsuario!= null) {
+            productList = productList.stream()
+                   .filter(p -> p.getPropietario().getId().equals(idUsuario))
+                   .collect(Collectors.toList());
+        }
+
+        return productList;
     }
 
     @Override
@@ -35,7 +46,10 @@ public class ProductoService implements IProductoService{
     }
 
     @Override
-    public Producto crearProducto(Producto nuevoProducto) {
+    public Producto crearProducto(Usuario propietario, Producto nuevoProducto) {
+        nuevoProducto.setNombre(nuevoProducto.getNombre().toUpperCase());
+        nuevoProducto.setCategoria(nuevoProducto.getCategoria().toUpperCase());
+        nuevoProducto.setPropietario(propietario);
         return productoRepository.save(nuevoProducto);
     }
 

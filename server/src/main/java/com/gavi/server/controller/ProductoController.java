@@ -1,13 +1,12 @@
 package com.gavi.server.controller;
 
 import com.gavi.server.model.Producto;
+import com.gavi.server.model.Usuario;
 import com.gavi.server.services.IProductoService;
+import com.gavi.server.services.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +17,12 @@ public class ProductoController {
     @Autowired
     private IProductoService productoService;
 
-    @GetMapping("/productos")
-    public ResponseEntity<List<Producto>> obtenerProductos() {
-        List<Producto> listaProductos = productoService.obtenerProductos();
+    @Autowired
+    private IUsuarioService usuarioService;
+
+    @GetMapping("/productos/{idUsuario}")
+    public ResponseEntity<List<Producto>> obtenerProductos(@PathVariable Long idUsuario) {
+        List<Producto> listaProductos = productoService.obtenerProductos(idUsuario);
 
         if (listaProductos.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -29,9 +31,18 @@ public class ProductoController {
         return ResponseEntity.ok(listaProductos);
     }
 
-    @PostMapping("/nuevo-producto")
-    public ResponseEntity<Producto> crearProducto(Producto producto) {
-        Producto nuevoProducto = productoService.crearProducto(producto);
-        return ResponseEntity.ok().body(nuevoProducto);
+    @PostMapping("/nuevo-producto/{idUsuario}")
+    public ResponseEntity<Producto> crearProducto(
+            @RequestBody Producto producto,
+            @PathVariable Long idUsuario
+    ) {
+        try {
+            Usuario usuarioEncontrado = usuarioService.obtenerUsuarioPorId(idUsuario).get();
+            Producto nuevoProducto = productoService.crearProducto(usuarioEncontrado, producto);
+            return ResponseEntity.ok().body(nuevoProducto);
+
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

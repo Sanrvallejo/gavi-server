@@ -16,6 +16,7 @@ public class UsuarioService implements  IUsuarioService{
 
     @Override
     public Usuario crearUsuario(Usuario usuario) {
+        usuario.setNombre(usuario.getNombre().toUpperCase());
         return usuarioRepository.save(usuario);
     }
 

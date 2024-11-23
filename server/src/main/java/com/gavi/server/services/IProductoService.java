@@ -16,7 +16,7 @@ public interface IProductoService {
 
     Producto crearProducto(Usuario propietario, Producto nuevoProducto);
 
-    void editarProducto(Long id, Producto productoEditado);
+    void editarProducto(String codigoProducto, Producto productoEditado);
 
     void eliminarProducto(Long id);
 }

@@ -45,4 +45,12 @@ public class ProductoController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @PutMapping("/producto-editado/{codigoProducto}")
+    public void editarProducto(
+            @PathVariable String codigoProducto,
+            @RequestBody Producto productoEditado
+    ) {
+        productoService.editarProducto(codigoProducto, productoEditado);
+    }
 }

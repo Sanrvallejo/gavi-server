@@ -54,15 +54,19 @@ public class ProductoService implements IProductoService{
     }
 
     @Override
-    public void editarProducto(Long id, Producto productoEditado) {
-        Producto productoEncontrado = productoRepository.findById(id).orElse(null);
+    public void editarProducto(String codigoProducto, Producto productoEditado) {
+        Producto productoEncontrado = productoRepository.findByCodigo(codigoProducto);
         if (productoEncontrado!= null) {
             if (productoEncontrado.getCodigo() != null) {
                 productoEncontrado.setCodigo(productoEditado.getCodigo());
             }
 
             if (productoEncontrado.getNombre() != null) {
-                productoEncontrado.setNombre(productoEditado.getNombre());
+                productoEncontrado.setNombre(productoEditado.getNombre().toUpperCase());
+            }
+
+            if (productoEncontrado.getCategoria() != null) {
+                productoEncontrado.setCategoria(productoEditado.getCategoria().toUpperCase());
             }
 
             if (productoEncontrado.getPrecio() != null) {

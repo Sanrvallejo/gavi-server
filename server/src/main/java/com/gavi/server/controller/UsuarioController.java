@@ -37,4 +37,18 @@ public class UsuarioController {
         Usuario nuevoUsuario = usuarioService.crearUsuario(usuario);
         return ResponseEntity.ok().body(nuevoUsuario);
     }
+
+    @PutMapping("/usuario-editado/{id}")
+    public ResponseEntity<Usuario> editarUsuario(
+            @PathVariable Long id,
+            @RequestBody Usuario usuario
+    ) {
+        Usuario usuarioEditado  = usuarioService.actualizarUsuario(id, usuario);
+
+        if (usuarioEditado != null) {
+            return ResponseEntity.ok().body(usuarioEditado);
+        }else  {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

@@ -9,5 +9,5 @@ import java.util.List;
 public interface IDetalleVentaService {
     DetalleVenta crearDetalleVenta(Producto producto, Double cantidad, Venta venta);
 
-    List<DetalleVenta> obtenerDetallesVentasByVenta(Venta venta);
+    List<DetalleVenta> obtenerDetallesVentasByVenta(Long idVenta);
 }

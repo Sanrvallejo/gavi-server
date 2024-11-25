@@ -24,4 +24,7 @@ public class Usuario {
     @OneToMany(mappedBy = "propietario")
     List<Producto> productos;
 
+    @OneToMany(mappedBy = "vendedor")
+    List<Venta> ventas;
+
 }

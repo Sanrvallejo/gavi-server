@@ -39,19 +39,18 @@ public class UsuarioService implements  IUsuarioService{
     public Usuario actualizarUsuario(Long id, Usuario usuario) {
         Usuario usuarioEncontrado = usuarioRepository.findById(id).orElse(null);
         if (usuarioEncontrado!= null) {
-            if (usuario.getNombre() != null || usuario.getNombre().equalsIgnoreCase("")) {
+            if (usuario.getNombre() != null && !usuario.getNombre().equalsIgnoreCase("")) {
                 usuarioEncontrado.setNombre(usuario.getNombre());
             }
 
-            if (usuario.getEmail() != null || usuario.getEmail().equalsIgnoreCase("")) {
+            if (usuario.getEmail() != null && !usuario.getEmail().equalsIgnoreCase("")) {
                 usuarioEncontrado.setEmail(usuario.getEmail());
             }
 
-            if (usuario.getPassword() != null || usuario.getPassword().equalsIgnoreCase("")) {
+            if (usuario.getPassword() != null && !usuario.getPassword().equalsIgnoreCase("")) {
                 usuarioEncontrado.setPassword(usuario.getPassword());
             }
 
-            //TODO: cambiar los || por &&
             return usuarioRepository.save(usuarioEncontrado);
         }else {
             System.out.println("No se pudo editar el usuario");

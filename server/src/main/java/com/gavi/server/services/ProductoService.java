@@ -87,4 +87,10 @@ public class ProductoService implements IProductoService{
     public void eliminarProducto(Long id) {
         productoRepository.deleteById(id);
     }
+
+    @Override
+    public void calcularCantidad(Producto producto, Double cantidad) {
+        producto.setCantidad(producto.getCantidad() - cantidad);
+        productoRepository.save(producto);
+    }
 }

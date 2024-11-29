@@ -19,4 +19,6 @@ public interface IProductoService {
     void editarProducto(String codigoProducto, Producto productoEditado);
 
     void eliminarProducto(Long id);
+
+    void calcularCantidad(Producto producto, Double cantidad);
 }

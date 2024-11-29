@@ -53,4 +53,9 @@ public class ProductoController {
     ) {
         productoService.editarProducto(codigoProducto, productoEditado);
     }
+
+    @DeleteMapping("/eliminar-producto/{idProducto}")
+    public void eliminarProducto(@PathVariable Long idProducto) {
+        productoService.eliminarProducto(idProducto);
+    }
 }

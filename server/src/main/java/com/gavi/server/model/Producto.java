@@ -28,4 +28,9 @@ public class Producto {
     @JoinColumn(name = "usuario_id")
     @JsonIgnore
     private Usuario propietario;
+
+    @OneToMany (mappedBy = "producto")
+    @JsonIgnore
+    private List<DetalleVenta> detalleVentas;
+
 }

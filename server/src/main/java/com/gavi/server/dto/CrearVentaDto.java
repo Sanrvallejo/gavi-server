@@ -14,7 +14,7 @@ import java.util.List;
 public class CrearVentaDto {
     private Venta venta;
     private List<Producto> productos;
-    private Double [] cantidades;
+    private Double[] cantidades;
 
     public Double getCantidades(int j) {
         return cantidades[j];

@@ -46,6 +46,7 @@ public class VentaService implements IVentaService {
 
                 DetalleVenta detalleVenta = detalleVentaService.crearDetalleVenta(p, cantidad, v);
                 subtotal += detalleVenta.getSubtotal();
+                productoService.calcularCantidad(p, cantidad);
             }
             v.setTotal(subtotal);
             ventaRepository.save(v);

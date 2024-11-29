@@ -30,5 +30,6 @@ public class Venta {
     private Usuario vendedor;
 
     @OneToMany (mappedBy = "venta")
+    @JsonIgnore
     private List<DetalleVenta> detallesVenta;
 }

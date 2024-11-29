@@ -1,7 +1,9 @@
 package com.gavi.server.controller;
 
 import com.gavi.server.dto.CrearVentaDto;
+import com.gavi.server.model.DetalleVenta;
 import com.gavi.server.model.Venta;
+import com.gavi.server.services.DetalleVentaService;
 import com.gavi.server.services.VentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,9 @@ import java.util.List;
 public class VentaController {
     @Autowired
     private VentaService ventaService;
+
+    @Autowired
+    private DetalleVentaService detalleService;
 
     @GetMapping("/ventas/{idUsuario}")
     public ResponseEntity<List<Venta>> obtenerVentasPorUsuario(@PathVariable Long idUsuario) {
@@ -38,5 +43,16 @@ public class VentaController {
         } else {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @GetMapping("/detalle-venta/{idVenta}")
+    public ResponseEntity<List<DetalleVenta>> obtenerDetalles(@PathVariable Long idVenta) {
+        List<DetalleVenta> detalleVentas = detalleService.obtenerDetallesVentasByVenta(idVenta);
+
+        if (detalleVentas.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(detalleVentas);
     }
 }

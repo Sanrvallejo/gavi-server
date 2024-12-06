@@ -31,6 +31,7 @@ Este proyecto es el backend de **Gavi**, un sistema de gestión administrativa p
 
 Si prefieres usar variables de entorno, crea un archivo `.env` en la raíz del proyecto y utiliza la siguiente plantilla:  
 
+```properties
 # Configuración de la base de datos
 SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/nombre_base_datos
 SPRING_DATASOURCE_USERNAME=tu_usuario
